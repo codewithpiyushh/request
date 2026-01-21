@@ -5,8 +5,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-r = redis.Redis(host="redis", port=6379, decode_responses=True)
-
+r = redis.Redis(host="localhost", port=6379, decode_responses=True)
 class RateLimitExceeded(HTTPException):
     def __init__(self, detail="Rate limit exceeded", retry_after=None):
         headers = {"Retry-After": str(retry_after)} if retry_after else None
